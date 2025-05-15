@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DriverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ Route::get('/', function () {
 
 Route::get('/', [DashboardController::class, 'index']);
 Route::get('index', [DashboardController::class, 'index']);
+Route::get('/driver_page', [DriverController::class, 'index'])->name('driver_page');
+Route::post('/drivers/update', [DriverController::class, 'update'])->name('drivers.update');

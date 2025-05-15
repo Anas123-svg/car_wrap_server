@@ -19,6 +19,7 @@ class UserController extends Controller
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:6|confirmed',
                 'phone' => 'nullable|string',
+                'profile_photo' => 'nullable|string',
                 'licence_photo' => 'nullable|string',
                 'vehicle.name' => 'required|string',
                 'vehicle.vehicle_no' => 'nullable|string',
@@ -31,6 +32,7 @@ class UserController extends Controller
             $user = User::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
+                'profile_photo' => $validated['profile_photo'] ?? null,
                 'password' => Hash::make($validated['password']),
                 'phone' => $validated['phone'] ?? null,
                 'licence_photo' => $validated['licence_photo'] ?? null,
@@ -97,6 +99,7 @@ class UserController extends Controller
             'name' => 'nullable|string|max:255',
             'phone' => 'nullable|string',
             'licence_photo' => 'nullable|string',
+            'profile_photo' => 'nullable|string',
             'password' => 'nullable|min:6|confirmed',
         ]);
 
@@ -108,6 +111,8 @@ class UserController extends Controller
             $user->licence_photo = $request->licence_photo;
         if ($request->filled('password'))
             $user->password = Hash::make($request->password);
+        if ($request->filled('profile_photo'))
+            $user->profile_photo = $request->profile_photo;
 
         $user->save();
 
