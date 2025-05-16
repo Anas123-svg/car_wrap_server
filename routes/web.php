@@ -21,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/', [DashboardController::class, 'index']);
-Route::get('index', [DashboardController::class, 'index']);
+Route::get('/index', [DashboardController::class, 'index'])->name('index');
+Route::get('/drivers', [DriverController::class, 'index'])->name('drivers.index');
 Route::get('/driver_page', [DriverController::class, 'index'])->name('driver_page');
 Route::post('/drivers/update', [DriverController::class, 'update'])->name('drivers.update');
+Route::delete('/drivers/{id}', [DriverController::class, 'destroy'])->name('drivers.destroy');
