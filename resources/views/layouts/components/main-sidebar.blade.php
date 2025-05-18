@@ -38,15 +38,21 @@
 					</a>
 				</li>
 				<li class="slide">
-					<a href="{{url('driver_page')}}" class="side-menu__item">
+					<a href="{{ url('driver_page') }}" class="side-menu__item">
 						<svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" height="24px"
 							viewBox="0 0 24 24" width="24px" fill="#000000">
 							<path d="M0 0h24v24H0V0z" fill="none" />
-							<path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
+							<path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 
+            3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 
+            5s-3 1.34-3 3 1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 
+            3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 
+            0c-.29 0-.62.02-.97.05 1.16.84 1.97 2.01 
+            1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
 						</svg>
-						<span class="side-menu__label">Driver</span>
+						<span class="side-menu__label">Drivers</span>
 					</a>
 				</li>
+
 				<!-- End::slide -->
 
 				<!-- Start::slide -->
@@ -59,36 +65,16 @@
 								d="M11 7h6v2h-6zm0 4h6v2h-6zm0 4h6v2h-6zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7zM20.1 3H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM19 19H5V5h14v14z">
 							</path>
 						</svg>
-						<span class="side-menu__label">Nested Menu</span>
+						<span class="side-menu__label">Campaigns</span>
 						<i class="fe fe-chevron-right side-menu__angle"></i>
 					</a>
 					<ul class="slide-menu child1">
-						<li class="slide side-menu__label1">
-							<a href="javascript:void(0);">Nested Menu</a>
+
+						<li class="slide">
+							<a href="{{ url('campaigns') }}" class="side-menu__item">Manage Campaigns</a>
 						</li>
 						<li class="slide">
-							<a href="javascript:void(0);" class="side-menu__item">Nested-1</a>
-						</li>
-						<li class="slide has-sub">
-							<a href="javascript:void(0);" class="side-menu__item">Nested-2
-								<i class="fe fe-chevron-right side-menu__angle"></i></a>
-							<ul class="slide-menu child2">
-								<li class="slide">
-									<a href="javascript:void(0);" class="side-menu__item">Nested-2-1</a>
-								</li>
-								<li class="slide has-sub">
-									<a href="javascript:void(0);" class="side-menu__item">Nested-2-2
-										<i class="fe fe-chevron-right side-menu__angle"></i></a>
-									<ul class="slide-menu child3">
-										<li class="slide">
-											<a href="javascript:void(0);" class="side-menu__item">Nested-2-2-1</a>
-										</li>
-										<li class="slide">
-											<a href="javascript:void(0);" class="side-menu__item">Nested-2-2-2</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<a href="{{ url('campaigns') }}" class="side-menu__item">Approve Campaigns</a>
 						</li>
 					</ul>
 				</li>

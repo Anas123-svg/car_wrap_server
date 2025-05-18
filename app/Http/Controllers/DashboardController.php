@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('pages.index');
-    }
+        $drivers = User::all();
 
+        return view('pages.index', compact('drivers'));
+    }
 }
