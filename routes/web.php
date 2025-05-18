@@ -30,3 +30,8 @@ Route::delete('/drivers/{id}', [DriverController::class, 'destroy'])->name('driv
 
 
 Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
+Route::get('/add-campaigns', [CampaignController::class, 'add'])->name('campaigns.add');
+
+Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
+Route::post('/campaigns/store', [CampaignController::class, 'store'])->name('campaigns.store');
+Route::get('show/campaign/{id}', [CampaignController::class, 'show'])->name('campaigns.show');
