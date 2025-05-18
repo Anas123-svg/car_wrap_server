@@ -67,42 +67,50 @@
                                 Campaigns{{ $campaigns->total() > 1 ? 's' : '' }}
                             </h2>
 
-<form method="GET" action="{{ route('campaigns.index') }}">
-    <input type="hidden" name="search" value="{{ request('search') }}">
+                            <form method="GET" action="{{ route('campaigns.index') }}">
+                                <input type="hidden" name="search" value="{{ request('search') }}">
 
-    <div class="row g-2 align-items-center">
-        <div class="col-md-3">
-            <select class="form-control" name="sort" style="min-width: 130px;" onchange="this.form.submit()">
-                <option value="">Sort by Date</option>
-                <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Latest</option>
-                <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Oldest</option>
-            </select>
-        </div>
+                                <div class="row g-2 align-items-center">
+                                    <div class="col-md-3">
+                                        <select class="form-control" name="sort" style="min-width: 130px;"
+                                            onchange="this.form.submit()">
+                                            <option value="">Sort by Date</option>
+                                            <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Latest
+                                            </option>
+                                            <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Oldest
+                                            </option>
+                                        </select>
+                                    </div>
 
-        <div class="col-md-3">
-            <select class="form-control" name="budget_sort" style="min-width: 130px;" onchange="this.form.submit()">
-                <option value="">Sort by Budget</option>
-                <option value="low_to_high" {{ request('budget_sort') == 'low_to_high' ? 'selected' : '' }}>Low to High</option>
-                <option value="high_to_low" {{ request('budget_sort') == 'high_to_low' ? 'selected' : '' }}>High to Low</option>
-            </select>
-        </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" name="budget_sort" style="min-width: 130px;"
+                                            onchange="this.form.submit()">
+                                            <option value="">Sort by Budget</option>
+                                            <option value="low_to_high" {{ request('budget_sort') == 'low_to_high' ? 'selected' : '' }}>Low to High</option>
+                                            <option value="high_to_low" {{ request('budget_sort') == 'high_to_low' ? 'selected' : '' }}>High to Low</option>
+                                        </select>
+                                    </div>
 
-        <div class="col-md-3">
-            <select class="form-control" name="status" style="min-width: 130px;" onchange="this.form.submit()">
-                <option value="">Filter by Status</option>
-                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Approved</option>
-                <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Expired</option>
-            </select>
-        </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" name="status" style="min-width: 130px;"
+                                            onchange="this.form.submit()">
+                                            <option value="">Filter by Status</option>
+                                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
+                                                Pending</option>
+                                            <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>
+                                                Approved</option>
+                                            <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>
+                                                Expired</option>
+                                        </select>
+                                    </div>
 
-        <div class="col-md-3">
-            <a href="{{ route('campaigns.index') }}" class="btn btn-outline-secondary w-100">
-                Reset Filters
-            </a>
-        </div>
-    </div>
-</form>
+                                    <div class="col-md-3">
+                                        <a href="{{ route('campaigns.index') }}" class="btn btn-outline-secondary w-100">
+                                            Reset Filters
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
 
                         </div>
 

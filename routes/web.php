@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
@@ -41,3 +42,16 @@ Route::delete('/campaign-assigned/{id}', [CampaignAssignedToUser::class, 'destro
 Route::get('show/update/campaign/{id}', [CampaignController::class, 'updateShow'])->name('campaigns.show');
 Route::put('update/campaign/{id}', [CampaignController::class, 'update'])->name('campaigns.update');
 Route::delete('/campaigns/{id}', [CampaignController::class, 'delete'])->name('campaigns.delete');
+
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admins.index');
+Route::get('add/admin', [AdminController::class, 'add']);
+Route::post('/admin/store', [AdminController::class, 'store'])->name('admins.store');
+
+
+
+Route::delete('/admins/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admins.destroy');
+
+
+
+
