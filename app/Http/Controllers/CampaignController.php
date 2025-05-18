@@ -8,7 +8,7 @@ class CampaignController extends Controller
 {
         public function index(Request $request)
     {
-       # $drivers = User::all();
+        $campaigns = User::all();
 
       #  return view('pages.index', compact('drivers'));
         return view('pages.campaign_page');

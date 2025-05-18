@@ -39,4 +39,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Vehicle::class);
     }
+
+        public function campaigns()
+    {
+        return $this->belongsToMany(Campaign::class, 'campaigns_assigned_to_users')
+                    ->withPivot('status')
+                    ->withTimestamps();
+    }
 }
