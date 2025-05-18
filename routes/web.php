@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CampaignAssignedToUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,8 @@ Route::get('/add-campaigns', [CampaignController::class, 'add'])->name('campaign
 Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
 Route::post('/campaigns/store', [CampaignController::class, 'store'])->name('campaigns.store');
 Route::get('show/campaign/{id}', [CampaignController::class, 'show'])->name('campaigns.show');
+Route::put('/campaign-assigned/update-status/{id}', [CampaignAssignedToUser::class, 'updateStatus'])->name('campaign-assigned.update-status');
+Route::delete('/campaign-assigned/{id}', [CampaignAssignedToUser::class, 'destroy'])->name('campaign-assigned.destroy');
+Route::get('show/update/campaign/{id}', [CampaignController::class, 'updateShow'])->name('campaigns.show');
+Route::put('update/campaign/{id}', [CampaignController::class, 'update'])->name('campaigns.update');
+Route::delete('/campaigns/{id}', [CampaignController::class, 'delete'])->name('campaigns.delete');

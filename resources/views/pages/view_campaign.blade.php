@@ -83,7 +83,7 @@
                                 <span class="badge bg-primary me-1 mb-1">{{ ucfirst(str_replace('_', ' ', $city)) }}</span>
                             @endforeach
                         </div>
-                        <small class="form-text text-muted">These are the cities selected for this campaign.</small>
+                        <small class="form-text text-muted">These are the requests to join the campaign.</small>
                     </div>
 
 
@@ -105,7 +105,7 @@
                                     @forelse($campaign->users as $user)
                                         <tr class="user-list">
                                             <td class="align-middle text-center">
-                                                {{ $user->id }}
+                                                {{ $user->pivot->id }}
                                             </td>
 
                                             <td class="align-middle">
@@ -118,26 +118,31 @@
 
                                             <td class="text-nowrap align-middle">{{ $user->email }}</td>
 
+                                            <!-- Separate Status Column with Dropdown -->
                                             <td class="text-nowrap align-middle">
-                                                <span
-                                                    class="badge bg-{{ $user->pivot->status === 'active' ? 'success' : 'warning' }}-transparent">
-                                                    {{ ucfirst($user->pivot->status) }}
-                                                </span>
+                                                <form action="{{ route('campaign-assigned.update-status', $user->pivot->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="dropdown">
+                                                        <select name="status" class="form-select form-select-sm"
+                                                            onchange="this.form.submit()">
+                                                            <option value="active" {{ $user->pivot->status === 'active' ? 'selected' : '' }}>Active</option>
+                                                            <option value="pending" {{ $user->pivot->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                                                            <option value="inactive" {{ $user->pivot->status === 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
                                             </td>
 
                                             <td class="text-nowrap align-middle">
                                                 <span>{{ $user->pivot->created_at->format('d M Y') }}</span>
                                             </td>
-
                                             <td class="align-middle text-center">
                                                 <div class="btn-list">
-                                                    <button class="btn btn-sm btn-icon btn-info-light rounded-circle"
-                                                        type="button">
-                                                        <i class="bi bi-eye"></i>
-                                                    </button>
                                                     <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle"
                                                         type="button" data-bs-toggle="modal" data-bs-target="#deleteUserModal"
-                                                        data-user-id="{{ $user->id }}">
+                                                        data-user-id="{{ $user->pivot->id }}">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </div>
@@ -154,60 +159,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xxl-3 col-xl-12 col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Cart Totals</div>
-                    </div>
-                    <div class="card-body pb-3">
-                        <p class="mb-0 fw-bold">Have a Coupon code ?</p>
-                        <div class="mb-3 mt-2">
-                            <div class="input-group mb-1">
-                                <input type="text" class="form-control" placeholder="Enter Coupon Code here...">
-                                <span class="input-group-text btn btn-primary">Apply Coupon</span>
-                            </div>
-                        </div>
-                        <div>
-                            <table class="table table-borderless text-nowrap mb-0">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-start fs-16 fw-bold py-2">Sub Total</td>
-                                        <td class="text-end py-2"><span class="fw-bold  ms-auto">$568</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start py-2">Shipping Charges</td>
-                                        <td class="text-end py-2"><span class="fw-bold text-green">0 (Free)</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start py-2">Tax</td>
-                                        <td class="text-end py-2"><span class="fw-bold text-danger">+ $39</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start py-2">Coupon Discount</td>
-                                        <td class="text-end py-2"><span class="fw-bold text-success">- $15%</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start fs-18 py-2">Total Bill</td>
-                                        <td class="text-end py-2"><span class="ms-2 fw-bold fs-23">$568</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div>
-                                <a href="{{url('checkout')}}" class="btn btn-success btn-lg btn-block">Proceed to Check
-                                    out<i class="fa fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{url('shop')}}" class="btn btn-secondary btn-lg btn-block"><i
-                                class="fa fa-arrow-left me-1"></i>Return to Shopping</a>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- ROW-1 CLOSED -->
 
     </div>
+    @include('modals.delete_campain_assigned_user')
+
 @endsection
 
 @section('scripts')

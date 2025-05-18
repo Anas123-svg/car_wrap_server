@@ -27,9 +27,10 @@
                     <div class="card-body p-4">
                         <div class="row align-items-center">
                             <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
-                                <form id="searchForm">
+                                <form method="GET" action="{{ route('campaigns.index') }}" id="searchForm">
                                     <div class="input-group w-500">
-                                        <input type="text" class="form-control" placeholder="Search by name, email or phone"
+                                        <input type="text" class="form-control" name="search"
+                                            value="{{ request('search') }}" placeholder="Search title"
                                             aria-describedby="button-addon2" id="searchInput">
                                         <button class="btn border" type="submit" id="button-addon2">
                                             <i class="bi bi-search text-muted"></i>
@@ -61,8 +62,50 @@
                 <div class="tab-pane active" id="tab-11">
                     <div class="card">
                         <div class="card-header border-bottom-0 px-5 d-flex justify-content-between align-items-center">
-                            <h2 class="card-title mb-0">Campaigns Table</h2>
+                            <h2 class="card-title mb-0">
+                                {{ $campaigns->firstItem() }} - {{ $campaigns->lastItem() }} of {{ $campaigns->total() }}
+                                Campaigns{{ $campaigns->total() > 1 ? 's' : '' }}
+                            </h2>
+
+<form method="GET" action="{{ route('campaigns.index') }}">
+    <input type="hidden" name="search" value="{{ request('search') }}">
+
+    <div class="row g-2 align-items-center">
+        <div class="col-md-3">
+            <select class="form-control" name="sort" style="min-width: 130px;" onchange="this.form.submit()">
+                <option value="">Sort by Date</option>
+                <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Latest</option>
+                <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Oldest</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <select class="form-control" name="budget_sort" style="min-width: 130px;" onchange="this.form.submit()">
+                <option value="">Sort by Budget</option>
+                <option value="low_to_high" {{ request('budget_sort') == 'low_to_high' ? 'selected' : '' }}>Low to High</option>
+                <option value="high_to_low" {{ request('budget_sort') == 'high_to_low' ? 'selected' : '' }}>High to Low</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <select class="form-control" name="status" style="min-width: 130px;" onchange="this.form.submit()">
+                <option value="">Filter by Status</option>
+                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Approved</option>
+                <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Expired</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{{ route('campaigns.index') }}" class="btn btn-outline-secondary w-100">
+                Reset Filters
+            </a>
+        </div>
+    </div>
+</form>
+
                         </div>
+
                         <div class="e-table px-5 pb-5">
                             <div class="table-responsive table-lg">
                                 <table class="table border-top table-bordered mb-0 text-nowrap">
@@ -75,6 +118,8 @@
                                             <th>status</th>
                                             <th>start date</th>
                                             <th>end date</th>
+                                            <th>created at</th>
+
                                             <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
@@ -99,20 +144,21 @@
 
                                                 <td class="text-nowrap align-middle">{{ $campaign->start_date }}</td>
                                                 <td class="text-nowrap align-middle">{{ $campaign->end_date }}</td>
+                                                <td class="text-nowrap align-middle">
+                                                    <span>{{ $campaign->created_at->format('d M Y') }}</span>
+                                                </td>
 
                                                 <td class="align-middle">
                                                     <div class="btn-list">
-                                                        <button
-                                                            class="btn btn-sm btn-icon btn-info-light rounded-circle edit-driver-btn"
-                                                            data-bs-toggle="modal" data-bs-target="#user-form-modal"
-                                                            data-user-id="{{ $campaign->id }}">
-                                                            <i class="bi bi-pencil-square"></i>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle"
-                                                            type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#deleteUserModal" data-user-id="dffd">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
+                                                        <a href="{{ url('show/update/campaign/' . $campaign->id) }}"
+                                                            class="btn btn-sm btn-icon btn-info-light rounded-circle">
+                                                            <button class="btn btn-sm btn-icon btn-info-light rounded-circle"
+                                                                type="button" data-bs-toggle="modal"
+                                                                data-bs-target="#viewUserModal"
+                                                                data-user-id="{{ $campaign->id }}">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </button>
+                                                        </a>
                                                         <a href="{{ url('show/campaign/' . $campaign->id) }}"
                                                             class="btn btn-sm btn-icon btn-info-light rounded-circle">
                                                             <button class="btn btn-sm btn-icon btn-info-light rounded-circle"
@@ -123,6 +169,12 @@
                                                             </button>
                                                         </a>
 
+                                                        <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle"
+                                                            type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#deleteUserModal"
+                                                            data-user-id="{{ $campaign->id }}">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -134,20 +186,14 @@
                     </div>
 
                     <!-- Fake Pagination -->
-                    <div class="d-flex justify-content-end mt-3">
-                        <nav>
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </nav>
+                    <div class="d-flex justify-content-end">
+                        {{ $campaigns->links('pagination::bootstrap-5') }}
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
+    @include('modals.delete_campaign')
 
 @endsection

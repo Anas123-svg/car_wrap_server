@@ -49,55 +49,11 @@
 
 
                             </div>
-                            <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
-                            </div>
+                            <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4"></div>
                             <div class="col-xl-2 col-lg-12">
-                                <a href="javascript:void(0);" class="btn btn-primary btn-block float-end my-2"
-                                    data-bs-toggle="modal" data-bs-target="#add-user"><i
-                                        class="fa fa-plus-square me-2"></i>Add Driver</a>
-                                <div class="modal fade" id="add-user" tabindex="-1" aria-labelledby="add-userLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h6 class="modal-title" id="add-userLabel">Add Driver</h6>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body px-4">
-                                                <div class="row gy-3">
-                                                    <div class="col-xl-12">
-                                                        <label for="user-name" class="form-label">Driver Name</label>
-                                                        <input type="text" class="form-control" id="user-name"
-                                                            placeholder="Enter Name">
-                                                    </div>
-                                                    <div class="col-xl-12">
-                                                        <label class="form-label">Designation</label>
-                                                        <input type="text" class="form-control" id="user-designation"
-                                                            placeholder="Enter Designation">
-                                                    </div>
-                                                    <div class="col-xl-12">
-                                                        <div class="file-upload-text">
-                                                            <input type="file" id="user-file-input" multiple>
-                                                            <label for="user-file-input" class="text-primary fs-13">
-                                                                <img src="{{asset('build/assets/images/users/22.jpg')}}"
-                                                                    class="rounded-circle h-20p w-20p" alt="">
-                                                                Upload Profile
-                                                                <span class="text-muted"></span>
-                                                            </label>
-                                                            <i class="fa fa-times-circle remove"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light"
-                                                    data-bs-dismiss="modal">Cancel</button>
-                                                <button type="button" class="btn btn-primary">Add Driver</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="" class="btn btn-primary btn-block float-end my-2">
+                                    <i class="fa fa-plus-square me-2"></i>Add Driver
+                                </a>
                             </div>
                         </div>
                     </div>

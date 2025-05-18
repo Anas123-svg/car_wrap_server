@@ -30,7 +30,7 @@ class Campaign extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'campaigns_assigned_to_users')
-                    ->withPivot('status')
+                    ->withPivot(['id', 'status']) // add 'id' here
                     ->withTimestamps();
     }
 }
