@@ -12,10 +12,10 @@
         <meta name="keywords" content="admin panel template, admin dashboard template, admin panel, bootstrap admin template, dashboard, laravel, bootstrap dashboard, admin dashboard, admin panel laravel template, laravel framework, admin laravel, laravel admin panel.">
 
 		<!-- TITLE -->
-        <title>Vexel – Laravel Bootstrap 5 Admin &amp; Dashboard Template </title>
+        <title> Car Wrap Server </title>
 
         <!-- Favicon -->
-        <link rel="icon" href="{{asset('build/assets/images/brand/favicon.ico')}}" type="image/x-icon">
+        <link rel="icon" href="{{asset('build/assets/images/brand/fav.ico')}}" type="image/x-icon">
 
         <!-- ICONS CSS -->
         <link href="{{asset('build/assets/iconfonts/icons.css')}}" rel="stylesheet">

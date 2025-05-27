@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Session;
+use App\Models\Admin;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,8 +20,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        //
-    }
+public function boot()
+{
+    View::composer('*', function ($view) {
+        $admin = null;
+        if (Session::has('admin_id')) {
+            $admin = Admin::find(Session::get('admin_id'));
+        }
+        $view->with('loggedInAdmin', $admin);
+    });
+}
 }

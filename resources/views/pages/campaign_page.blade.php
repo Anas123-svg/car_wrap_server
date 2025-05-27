@@ -64,7 +64,7 @@
                         <div class="card-header border-bottom-0 px-5 d-flex justify-content-between align-items-center">
                             <h2 class="card-title mb-0">
                                 {{ $campaigns->firstItem() }} - {{ $campaigns->lastItem() }} of {{ $campaigns->total() }}
-                                Campaigns{{ $campaigns->total() > 1 ? 's' : '' }}
+                                Campaign{{ $campaigns->total() > 1 ? 's' : '' }}
                             </h2>
 
                             <form method="GET" action="{{ route('campaigns.index') }}">

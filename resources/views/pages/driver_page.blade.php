@@ -50,11 +50,6 @@
 
                             </div>
                             <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4"></div>
-                            <div class="col-xl-2 col-lg-12">
-                                <a href="" class="btn btn-primary btn-block float-end my-2">
-                                    <i class="fa fa-plus-square me-2"></i>Add Driver
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>

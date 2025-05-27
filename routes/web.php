@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [DashboardController::class, 'login'])->name('login');
 Route::get('/index', [DashboardController::class, 'index'])->name('index');
 Route::get('/drivers', [DriverController::class, 'index'])->name('drivers.index');
 Route::get('/driver_page', [DriverController::class, 'index'])->name('driver_page');
@@ -49,9 +49,13 @@ Route::get('add/admin', [AdminController::class, 'add']);
 Route::post('/admin/store', [AdminController::class, 'store'])->name('admins.store');
 
 
+Route::post('admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
 
 Route::delete('/admins/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admins.destroy');
+Route::get('admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
 
 
 
 
+Route::put('/admins/{admin}', [AdminController::class, 'update'])->name('admins.update');
+Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
