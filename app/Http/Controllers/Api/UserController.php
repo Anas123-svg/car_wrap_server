@@ -90,7 +90,7 @@ class UserController extends Controller
         ]);
     }
 
-    // Update User Profile
+    // Update User Profile // 
     public function update(Request $request)
     {
         $user = Auth::user();
